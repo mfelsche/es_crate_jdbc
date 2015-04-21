@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true">
+	<!-- appenders for 'normal' files -->
+	<appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+<!-- 		<appender-ref ref="TEMP" />
+		<appender-ref ref="ERR" /> -->
+		<appender-ref ref="CONSOLE" />
+	</appender>
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss,SSS} [%-5p] [%t] %-25.50c{1}| %m%n" /> <!-- added [%t] back -->
+		</layout>
+	</appender>
+
+	<appender name="TEMP" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="DEBUG" />
+		<param name="File" value="${catalina.home}/logs/shndash-debug.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="25000KB" />
+		<param name="maxBackupIndex" value="5" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss,SSS} [%-5p] [%t] %-25.50c{1}| %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ERR" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="ERROR" />
+		<param name="File" value="${catalina.home}/logs/shndash-error.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="25000KB" />
+		<param name="maxBackupIndex" value="5" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss,SSS} [%-5p] [%t] %-25.50c{1}| %m%n" />
+		</layout>
+	</appender>
+
+
+	<!-- <logger name="org.springframework">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.apache">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.apache.torque.util.SQLBuilder">
+		<level value="warn" />
+	</logger>
+
+    <logger name="org.gwtwidgets.server.spring.GWTHandler">
+        <level value="info" />
+    </logger>
+    
+    <logger name="org.gwtwidgets.server.spring.GWTRPCServiceExporter">
+        <level value="error" />
+    </logger>
+
+	<logger name="org.terracotta.license.ehcache.LicenseManager">
+		<level value="error" />
+	</logger>
+
+	<logger
+		name="com.terracottatech.offheapstore.paging.UpfrontAllocatingPageSource">
+		<level value="error" />
+	</logger>
+
+	<logger name="net.sf.ehcache.statistics.extended.ExtendedStatisticsImpl">
+		<level value="error" />
+	</logger>
+	
+	<logger
+		name="com.shn.mdnsclient.DNSService">
+		<level value="error" />
+	</logger>
+	
+	<logger
+		name="net.sf.ehcache.config.ConfigurationHelper">
+		<level value="error" />
+	</logger>
+	
+    
+    <logger name="gwtupload.server.UploadListener">
+        <level value="error" />
+    </logger>
+    
+    <logger name="org.quartz">
+        <level value="warn" />
+    </logger>
+    
+    <logger name="org.elasticsearch">
+        <level value="warn" />
+    </logger> -->
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="ASYNC" />
+	</root>
+
+
+</log4j:configuration>
